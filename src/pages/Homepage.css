@@ -1,0 +1,18 @@
+.sidebar-btn {
+    width: 100%;
+    text-align: left;
+    padding: 0.75rem 1rem;
+    background-color: transparent;
+    transition: background-color 0.2s;
+  }
+  
+  .sidebar-btn:hover,
+  .dropdown-btn:hover {
+    background-color: rgba(61, 89, 72, 1);
+  }
+  
+  .dropdown-btn {
+    width: 100%;
+    padding: 0.5rem 1rem;
+  }
+  
