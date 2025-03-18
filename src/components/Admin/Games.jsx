@@ -22,6 +22,7 @@ const Games = () => {
   const fetchGames = async () => {
     try {
       const response = await axios.get(GET_ALL_GAMES);
+      
       setGames(response.data || []);
     } catch (err) {
       console.error("Failed to fetch games:", err);
@@ -48,6 +49,7 @@ const Games = () => {
 
     try {
       if (editing) {
+        console.log(formData, "formdata");
         await axios.put(`${UPDATE_GAME(formData.id)}`, data, {
           headers: { "Content-Type": "multipart/form-data" },
         });
@@ -67,11 +69,11 @@ const Games = () => {
 
   const handleEdit = (game) => {
     setFormData({
-      id: game.id,
+      id: game._id,
       name: game?.name,
       popularity: game?.popularity,
       description: game?.description,
-      image: game?.image?.startsWith("./") ? game.image : `${BASE_URL}/uploads/${game.image}`,
+      image: game?.image?.startsWith("./") ? game?.image : `${BASE_URL}/uploads/${game.image}`,
       type: game?.type,
     });
     setEditing(true);
@@ -224,7 +226,7 @@ const Games = () => {
               </thead>
               <tbody>
                 {currentGames.map((game) => (
-                  <tr key={game.id} className="hover:bg-gray-700">
+                  <tr key={game._id} className="hover:bg-gray-700">
                     <td className="border border-gray-700 px-4 py-2">
                       <img
                         src={game?.image?.startsWith("./") ? game?.image : `${BASE_URL}/uploads/${game.image}`}
@@ -241,7 +243,7 @@ const Games = () => {
                         <button onClick={() => handleEdit(game)} className="text-blue-500 hover:text-blue-700">
                           <FaEdit size={20} />
                         </button>
-                        <button onClick={() => handleDelete(game.id)} className="text-red-500 hover:text-red-700">
+                        <button onClick={() => handleDelete(game._id)} className="text-red-500 hover:text-red-700">
                           <FaTrash size={20} />
                         </button>
                       </div>
@@ -255,7 +257,7 @@ const Games = () => {
           {/* Cards for Smaller Screens */}
           <div className="block lg:hidden">
             {currentGames.map((game) => (
-              <div key={game.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
+              <div key={game._id} className="bg-white shadow-md rounded-lg p-4 mb-4">
                 <img
                   src={game?.image?.startsWith("./") ? game?.image : `${BASE_URL}/uploads/${game.image}`}
                   alt={game.name}
@@ -279,7 +281,7 @@ const Games = () => {
                     Edit
                   </button>
                   <button
-                    onClick={() => handleDelete(game.id)}
+                    onClick={() => handleDelete(game._id)}
                     className="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600"
                   >
                     Delete
