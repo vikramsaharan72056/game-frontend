@@ -153,6 +153,14 @@ const Header = () => {
           Logout
         </button>
       )}
+      {UserLoginPage && (
+  <button
+    className="bg-red-500 hover:bg-red-700 text-white py-1 px-2 lg:py-2 lg:px-8 rounded text-sm lg:text-md font-bold"
+    onClick={() => navigate('/admin-login')}
+  >
+    Admin Login
+  </button>
+)}
 
        {/* Admin Logout Button */}
        {adminToken && AdminPage && (
