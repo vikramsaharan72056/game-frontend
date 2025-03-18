@@ -68,11 +68,11 @@ const Games = () => {
   const handleEdit = (game) => {
     setFormData({
       id: game.id,
-      name: game.name,
-      popularity: game.popularity,
-      description: game.description,
-      image: game.image.startsWith("./") ? game.image : `${BASE_URL}/uploads/${game.image}`,
-      type: game.type,
+      name: game?.name,
+      popularity: game?.popularity,
+      description: game?.description,
+      image: game?.image?.startsWith("./") ? game.image : `${BASE_URL}/uploads/${game.image}`,
+      type: game?.type,
     });
     setEditing(true);
     setShowForm(true);
@@ -227,7 +227,7 @@ const Games = () => {
                   <tr key={game.id} className="hover:bg-gray-700">
                     <td className="border border-gray-700 px-4 py-2">
                       <img
-                        src={game.image.startsWith("./") ? game.image : `${BASE_URL}/uploads/${game.image}`}
+                        src={game?.image?.startsWith("./") ? game?.image : `${BASE_URL}/uploads/${game.image}`}
                         alt={game.name}
                         className="w-12 h-12 object-cover rounded-lg"
                         loading="lazy"
@@ -257,7 +257,7 @@ const Games = () => {
             {currentGames.map((game) => (
               <div key={game.id} className="bg-white shadow-md rounded-lg p-4 mb-4">
                 <img
-                  src={game.image.startsWith("./") ? game.image : `${BASE_URL}/uploads/${game.image}`}
+                  src={game?.image?.startsWith("./") ? game?.image : `${BASE_URL}/uploads/${game.image}`}
                   alt={game.name}
                   className="w-full h-32 object-cover rounded-md mb-2"
                   loading="lazy"
